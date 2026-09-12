@@ -26,8 +26,9 @@
 
     <footer class="site-footer">
         <div class="wrap">
-            Index <code>{{ config('scout-opensolr.index') }}</code> on <a href="https://opensolr.com" rel="noopener">Opensolr</a>,
-            searched through <a href="https://packagist.org/packages/opensolr/laravel-scout-opensolr" rel="noopener">opensolr/laravel-scout-opensolr</a>.
+            Index search on <code>{{ config('scout-opensolr.search_index') ?: config('scout-opensolr.index') }}</code>,
+            Scout on <code>{{ config('scout-opensolr.index') ?: 'no index yet' }}</code>, both on <a href="https://opensolr.com" rel="noopener">Opensolr</a>
+            through <a href="https://packagist.org/packages/opensolr/laravel-scout-opensolr" rel="noopener">opensolr/laravel-scout-opensolr</a>.
         </div>
     </footer>
 </body>

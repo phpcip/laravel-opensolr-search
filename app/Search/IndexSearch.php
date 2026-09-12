@@ -36,6 +36,22 @@ class IndexSearch
     public function __construct(protected OpensolrClient $client, protected string $index) {}
 
     /**
+     * The index this service reads from.
+     */
+    public function index(): string
+    {
+        return $this->index;
+    }
+
+    /**
+     * A plain-text answer grounded on the top hybrid hits for the question.
+     */
+    public function answer(string $question): string
+    {
+        return $this->client->aiAnswer($this->index, $question);
+    }
+
+    /**
      * Run one page of results.
      *
      * The hard freshness window (fresh=yes) is always off; the visitor's "fresh first" toggle

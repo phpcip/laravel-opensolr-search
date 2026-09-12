@@ -82,8 +82,9 @@ onMounted(() => submit());
             </ol>
 
             <p v-if="!result.docs.length" class="panel muted">
-                No articles matched. If the list is empty for every query, the articles have not been imported yet:
-                <code>php artisan scout:import "App\Models\Article"</code>.
+                No articles matched. If the list is empty for every query, the articles are not in the index yet:
+                run <code>php artisan opensolr:create-index</code> once, then <code>php artisan scout:import "App\Models\Article"</code>,
+                and give the ingestion about a minute.
             </p>
 
             <Pager :page="result.page" :pages="result.pages" @change="submit" />

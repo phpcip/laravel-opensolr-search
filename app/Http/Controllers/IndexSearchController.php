@@ -6,7 +6,6 @@ use App\Http\Requests\AnswerRequest;
 use App\Http\Requests\SearchRequest;
 use App\Search\IndexSearch;
 use Illuminate\Http\JsonResponse;
-use Opensolr\ScoutOpensolr\OpensolrClient;
 use RuntimeException;
 
 /**
@@ -41,10 +40,10 @@ class IndexSearchController extends Controller
     /**
      * A plain-text answer grounded on the top hybrid hits for the question.
      */
-    public function answer(AnswerRequest $request, OpensolrClient $client): JsonResponse
+    public function answer(AnswerRequest $request, IndexSearch $search): JsonResponse
     {
         try {
-            $answer = $client->aiAnswer((string) config('scout-opensolr.index'), (string) $request->validated('q'));
+            $answer = $search->answer((string) $request->validated('q'));
         } catch (RuntimeException $exception) {
             report($exception);
 

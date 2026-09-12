@@ -26,7 +26,15 @@ return [
     // The vector-enabled Opensolr index used for this application.
     // Create one in the control panel (locations: us, de, fi) or via
     // Artisan: php artisan scout:index anything (uses this name).
-    'index' => env('OPENSOLR_INDEX', ''),
+    /*
+     | This application searches two indexes. OPENSOLR_INDEX is the one the "Index search"
+     | page and the AI answer read from; on the public demo account it is the shared news
+     | index, which is read-only. Scout needs an index it can write to, so the Article model
+     | goes to OPENSOLR_SCOUT_INDEX, created with `php artisan opensolr:create-index`. Leave
+     | it empty to use one index for both, which is the normal setup on your own account.
+     */
+    'index' => env('OPENSOLR_SCOUT_INDEX') ?: env('OPENSOLR_INDEX', ''),
+    'search_index' => env('OPENSOLR_INDEX', ''),
 
     // Hybrid search: fuse BM25 keyword scores with semantic kNN per document.
     // Set to false for pure semantic search.

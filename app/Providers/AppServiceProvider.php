@@ -30,7 +30,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(IndexSearch::class, function (): IndexSearch {
             return new IndexSearch(
                 $this->app->make(OpensolrClient::class),
-                (string) config('scout-opensolr.index'),
+                (string) (config('scout-opensolr.search_index') ?: config('scout-opensolr.index')),
             );
         });
     }

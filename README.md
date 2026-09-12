@@ -41,19 +41,22 @@ cp .env.example .env
 php artisan key:generate
 touch database/database.sqlite
 php artisan migrate --seed
+php artisan opensolr:create-index
 php artisan scout:import "App\Models\Article"
 npm install
 npm run build
 php artisan serve
 ```
 
-Open http://localhost:8000. The index search works immediately: the demo index
-`mcp_demo_d1__dense` is already loaded with news articles. The Eloquent page lists the twenty
-seeded articles from the database right away, and searching them works about a minute after
-`scout:import`, once the Data Ingestion API has embedded the documents server-side. Progress is
-visible in the Control Panel under Data Ingestion.
+Open http://localhost:8000. The index search works immediately: `OPENSOLR_INDEX` points at
+the demo account's news index, which is loaded and read-only. `opensolr:create-index` creates
+a vector index of your own on the account and writes its name to `OPENSOLR_SCOUT_INDEX`; that
+is where `scout:import` sends the twenty seeded articles. They become searchable on the
+Eloquent page about a minute later, once the Data Ingestion API has embedded them
+server-side. Progress is visible in the Control Panel under Data Ingestion.
 
-`composer setup` runs the same steps in one go, except `scout:import`.
+`composer setup` runs the same steps in one go, except the two `opensolr:create-index` and
+`scout:import` lines.
 
 For development with hot reloading, run `npm run dev` next to `php artisan serve`.
 
@@ -78,9 +81,12 @@ vector-enabled index in the Control Panel, and change three lines in `.env`:
 OPENSOLR_EMAIL=you@example.com
 OPENSOLR_API_KEY=your-api-key
 OPENSOLR_INDEX=myapp__dense
+OPENSOLR_SCOUT_INDEX=
 ```
 
-Nothing else in the code changes.
+With `OPENSOLR_SCOUT_INDEX` empty, both pages use the same index, which is the normal setup:
+one index serves every searchable model and the whole-index search alike. Nothing else in the
+code changes.
 
 ## How it works
 
