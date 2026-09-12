@@ -1,19 +1,14 @@
 <?php
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\ArticleSearchController;
+use App\Http\Controllers\IndexSearchController;
+use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| is assigned the "api" middleware group. Enjoy building your API!
-|
-*/
+Route::middleware('throttle:search')->group(function (): void {
+    Route::get('/search', [IndexSearchController::class, 'search'])->name('api.search');
+    Route::get('/articles', ArticleSearchController::class)->name('api.articles');
+});
 
-
-Route::get('/search', 'API\SolrController@search')->name('search');
-Route::post('/filter', 'API\SolrController@filter')->name('filter');
-
+Route::get('/answer', [IndexSearchController::class, 'answer'])
+    ->middleware('throttle:answer')
+    ->name('api.answer');
