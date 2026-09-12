@@ -1,8 +1,8 @@
 {
     "$schema": "https://getcomposer.org/schema.json",
-    "name": "phpcip/laravel-opensolr-search",
-    "type": "project",
+    "name": "opensolr/laravel-opensolr-search",
     "description": "Sample Laravel application: hybrid semantic search over an Opensolr index through Laravel Scout, with a Vue 3 front end and a grounded AI answer.",
+    "type": "project",
     "keywords": [
         "laravel",
         "scout",
@@ -12,7 +12,19 @@
         "hybrid-search",
         "vue"
     ],
+    "homepage": "https://opensolr.com/laravel-search",
     "license": "MIT",
+    "authors": [
+        {
+            "name": "Opensolr",
+            "email": "support@opensolr.com"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/phpcip/laravel-opensolr-search/issues",
+        "source": "https://github.com/phpcip/laravel-opensolr-search",
+        "docs": "https://opensolr.com/learn/opensolr-resources/209/laravel-opensolr-search-sample-app-with-scout-vue-3-and-hybrid-search"
+    },
     "require": {
         "php": "^8.3",
         "laravel/framework": "^13.17",
@@ -57,6 +69,11 @@
         ],
         "pre-package-uninstall": [
             "Illuminate\\Foundation\\ComposerScripts::prePackageUninstall"
+        ],
+        "post-create-project-cmd": [
+            "@php artisan key:generate --ansi",
+            "@php -r \"file_exists('database/database.sqlite') || touch('database/database.sqlite');\"",
+            "@php artisan migrate --seed --graceful --ansi"
         ]
     },
     "extra": {
@@ -77,6 +94,5 @@
         }
     },
     "minimum-stability": "stable",
-    "prefer-stable": true,
-    "homepage": "https://opensolr.com/laravel-search"
+    "prefer-stable": true
 }

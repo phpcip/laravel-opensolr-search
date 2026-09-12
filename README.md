@@ -34,6 +34,19 @@ The `.env.example` file points at Opensolr's public demo account, so the applica
 before you have an account of your own.
 
 ```bash
+composer create-project opensolr/laravel-opensolr-search my-search
+cd my-search
+php artisan opensolr:create-index
+php artisan scout:import "App\Models\Article"
+npm install
+npm run build
+php artisan serve
+```
+
+`create-project` copies `.env.example` to `.env`, generates the application key, creates the
+SQLite database and seeds the articles. Working from a clone instead:
+
+```bash
 git clone https://github.com/phpcip/laravel-opensolr-search.git
 cd laravel-opensolr-search
 composer install
@@ -41,12 +54,9 @@ cp .env.example .env
 php artisan key:generate
 touch database/database.sqlite
 php artisan migrate --seed
-php artisan opensolr:create-index
-php artisan scout:import "App\Models\Article"
-npm install
-npm run build
-php artisan serve
 ```
+
+then continue from `opensolr:create-index` above.
 
 Open http://localhost:8000. The index search works immediately: `OPENSOLR_INDEX` points at
 the demo account's news index, which is loaded and read-only. `opensolr:create-index` creates
