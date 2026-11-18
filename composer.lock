@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0ed00a38c7e8ce9edfe68f3123c91b93",
+    "content-hash": "5118fbfe93777583f4671efd7e0fd1a3",
     "packages": [
         {
             "name": "brick/math",
@@ -2638,16 +2638,16 @@
         },
         {
             "name": "opensolr/laravel-scout-opensolr",
-            "version": "v0.6.3",
+            "version": "v0.7.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpcip/laravel-scout-opensolr.git",
-                "reference": "3596e3d7327ae048e2a1eafde3cf168ea67a5f1d"
+                "reference": "cfe8731952140c2fe70f6a863e0a1d084541317b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpcip/laravel-scout-opensolr/zipball/3596e3d7327ae048e2a1eafde3cf168ea67a5f1d",
-                "reference": "3596e3d7327ae048e2a1eafde3cf168ea67a5f1d",
+                "url": "https://api.github.com/repos/phpcip/laravel-scout-opensolr/zipball/cfe8731952140c2fe70f6a863e0a1d084541317b",
+                "reference": "cfe8731952140c2fe70f6a863e0a1d084541317b",
                 "shasum": ""
             },
             "require": {
@@ -2696,9 +2696,15 @@
             ],
             "support": {
                 "issues": "https://github.com/phpcip/laravel-scout-opensolr/issues",
-                "source": "https://github.com/phpcip/laravel-scout-opensolr/tree/v0.6.3"
+                "source": "https://github.com/phpcip/laravel-scout-opensolr/tree/v0.7.1"
             },
-            "time": "2026-09-12T20:09:42+00:00"
+            "funding": [
+                {
+                    "url": "https://github.com/phpcip",
+                    "type": "github"
+                }
+            ],
+            "time": "2026-10-09T23:22:07+00:00"
         },
         {
             "name": "phpoption/phpoption",
